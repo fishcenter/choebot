@@ -3,5 +3,5 @@
   "hubot-heroku-keepalive",
   "hubot-google-images",
   "hubot-google-translate",
-  "hubot-redis-brain",
+  "hubot-redis-brain"
 ]
