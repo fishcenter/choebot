@@ -23,17 +23,20 @@ module.exports = (robot) ->
       .get() (err, response, body) ->
         name_map = 
           "sir squirt": 'sir_squirt'
-          "ol' blue": "ol`_blue"
-          "ol blue": "ol`_blue"
-          "olblue": "ol`_blue"
-          "th'lump": "th`lump"
-          "thlump": "th`lump"
+          "ol' blue": "[class^=ol].Total"
+          "ol blue": "[class^=ol].Total"
+          "olblue": "[class^=ol].Total"
+          "th'lump":  "[class^=th].Total"
+          "thlump":  "[class^=th].Total"
 
         $ = cheerio.load(body)
         score_board = $('#scoreboard_table')
         match = fish = res.match[1]
-        fish = name_map[fish] if name_map[fish]
-        total = score_board.find(".#{fish}_Total")
+        if name_map[fish]
+          fish = name_map[fish] 
+          total = score_board.find("#{fish}")
+        else
+          total = score_board.find(".#{fish}_Total")
         if total.length
           res.send "#{match} has #{total.text()} points" 
         else
