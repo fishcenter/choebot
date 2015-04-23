@@ -13,5 +13,5 @@ module.exports = (robot) ->
         leader = score_board.find('tbody tr:first-child')
         name = leader.find('td:first-child').text()
         total = leader.find('td:last-child').text()
-        res.send ":#{name}: is current in the lead with #{total} points"
+        res.send ":#{name}: is currently in the lead with #{total} points"
 
