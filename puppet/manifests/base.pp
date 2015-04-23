@@ -1,0 +1,3 @@
+class { 'nodejs':
+    version => 'stable',
+}
