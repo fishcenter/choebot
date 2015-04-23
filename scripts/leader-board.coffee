@@ -1,6 +1,8 @@
 # Description:
 #   Teaches choebot how to scrap the front page of fishcenter
 #   and post the leader board
+# Commands:
+#   choebot who's winning - response with the current leader this week
 
 cheerio = require('cheerio')
 
