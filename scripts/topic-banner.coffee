@@ -1,7 +1,6 @@
 fs = require('fs')
 cheerio = require('cheerio')
-gm = require('gm')
-imagemagick = gm.subClass({ imageMagick: true })
+svg2png = require('svg2png')
 
 module.exports = (robot) ->
   robot.respond /change topic (.*)/, (res) ->
@@ -11,11 +10,9 @@ module.exports = (robot) ->
       $('#BANNER-RED').text(res.match[1])
       fs.writeFile './tmp/banner.svg', $.html(), (err, data) ->
         throw err if err
-        imagemagick('./tmp/banner.svg')
-          .write './tmp/banner.png', (err) ->
-            throw err if err
-            console.log 'it worked'
-
+        svg2png './tmp/banner.svg', './tmp/banner.png', (err) ->
+          throw err if err
+          console.log 'generated'
 
 
 
