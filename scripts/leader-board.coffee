@@ -11,12 +11,16 @@ module.exports = (robot) ->
   robot.respond /who's winning/, (res) ->
     robot.http('http://www.adultswim.com/videos/fishcenter')
       .get() (err, response, body) ->
+        name_map = 
+          "hamburger": "eel"
+
         $ = cheerio.load(body)
         score_board = $('#scoreboard_table')
         leader = score_board.find('tbody tr:first-child')
         name = leader.find('td:first-child').text()
         total = leader.find('td:last-child').text()
-        res.send ":#{name}: is currently in the lead with #{total} points"
+        leader_name = if name_map[name] then name_map[name] else name
+        res.send ":#{leader_name}: is currently in the lead with #{total} points"
 
 
   robot.respond /how many points does (.*) have/, (res) ->
